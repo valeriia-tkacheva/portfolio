@@ -1,0 +1,13 @@
+# Generated files and dependencies
+.nuxt/
+.output/
+.data/
+.nitro/
+.cache/
+dist/
+coverage/
+node_modules/
+
+# Editor settings and dependency lockfile
+.idea/
+package-lock.json
