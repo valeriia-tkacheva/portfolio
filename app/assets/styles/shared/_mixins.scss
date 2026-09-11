@@ -1,0 +1,62 @@
+@mixin media-down($breakpoint) {
+  @media (max-width: $breakpoint - 0.02px) {
+    @content;
+  }
+}
+
+@mixin media-up($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin hover {
+  @media (hover), (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin circle($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@mixin grid-columns($columns, $gap) {
+  $full-gap: $gap * ($columns - 1);
+  $column-width: calc((100% - $full-gap) / $columns);
+  grid-template-columns: repeat($columns, $column-width);
+  grid-column-gap: $gap;
+}
+
+@mixin hide-scrollbar {
+  -ms-overflow-style: none; // Internet Explorer 10+
+  scrollbar-width: none; // Firefox
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
