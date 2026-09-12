@@ -1,5 +1,10 @@
 <script setup lang="ts">
-const items = [
+interface Item {
+  title: string;
+  href: string;
+}
+
+const items: Item[] = [
   { title: 'Behance', href: '#' },
   { title: 'Telegram', href: '#' },
   { title: 'Gmail', href: '#' },

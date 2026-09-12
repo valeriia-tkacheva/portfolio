@@ -50,7 +50,7 @@ export default defineNuxtConfig({
         },
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap',
+          href: 'https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&display=swap',
         },
       ],
     },

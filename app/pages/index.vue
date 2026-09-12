@@ -1,5 +1,7 @@
 <template>
-  <div class="home-page"></div>
+  <div class="home-page">
+    <HeroSection />
+  </div>
 </template>
 
 <style lang="scss"></style>
