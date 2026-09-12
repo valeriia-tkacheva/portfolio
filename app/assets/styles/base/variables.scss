@@ -1,15 +1,12 @@
 :root {
   // Colors
-  --color-white: #FBFBFB;
-  --color-black: #262626;
+  --color-background: #050505;
+  --color-text: #FFFFFF;
 
   // Fonts
-  --font-main: 'Roboto Mono';
+  --font-main: 'Roboto Mono', monospace;
 
   // Container
   --container-max-width: 1600px;
   --container-padding: 40px;
-
-  // Header
-  --header-height: 70px;
 }

@@ -1,2 +1,15 @@
 @use '../shared/index' as *;
 
+body {
+  font-family: var(--font-main), monospace;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -0.006em;
+  font-optical-sizing: none !important;
+}
+
+.txt-text {
+  font-size: 20px;
+  line-height: 28px;
+}
