@@ -18,13 +18,12 @@ const project: Project = {
 
 <template>
   <ProjectSectionBase :project="project" grid-class="sber-prime-section__grid">
-    <div
+    <UiImage
       v-for="(src, index) in previews"
       :key="index"
-      class="sber-prime-section__item img-box"
-    >
-      <img :src="src" :alt="project.name" />
-    </div>
+      class="sber-prime-section__item"
+      :src="src"
+    />
   </ProjectSectionBase>
 </template>
 
@@ -39,8 +38,6 @@ const project: Project = {
   }
 
   &__item {
-    border-radius: var(--border-radius);
-
     &:nth-child(1) {
       grid-row: 1 / 3;
     }

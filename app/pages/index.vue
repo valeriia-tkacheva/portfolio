@@ -1,7 +1,9 @@
 <template>
   <div class="home-page">
     <HeroSection />
+
     <SberPrimeSection class="home-page__project-section" />
+    <TicketDropSection class="home-page__project-section" />
 
     <div style="margin-top: 100px" />
   </div>
