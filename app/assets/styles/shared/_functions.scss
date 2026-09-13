@@ -1,0 +1,9 @@
+@use "./variables.scss" as *;
+
+@function percentRatio($numerator, $denominator) {
+  @return $numerator * 100% / $denominator;
+}
+
+@function percentContentWidth($width) {
+  @return percentRatio($width, $content-width);
+}

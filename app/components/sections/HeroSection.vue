@@ -18,47 +18,44 @@ const stickerNames = [
 </script>
 
 <template>
-  <section class="hero-section">
-    <div class="container">
-      <div class="hero-section__content">
-        <img
-          v-draggable
-          src="/images/stickers/lerochka.png"
-          alt="Лера"
-          draggable="false"
-          class="hero-section__photo"
-        />
+  <section class="hero-section container">
+    <div class="hero-section__content">
+      <img
+        v-draggable
+        src="/images/stickers/lerochka.png"
+        alt="Лера"
+        draggable="false"
+        class="hero-section__photo"
+      />
 
-        <div class="hero-section__text text">
-          <p>Меня зовут Лера. Я UX/UI-дизайнер с опытом в три года</p>
-          <p>
-            Работала в небольших дизайн-студиях и над крупным цифровым продуктом
-            —
-            <a href="https://www.sberbank.ru/" target="_blank">sberbank.ru</a> с
-            аудиторией более 30 млн пользователей в месяц
-          </p>
-          <p>
-            Специализируюсь на промо-проектах, но создаю не просто красивые
-            интерфейсы, а продуманные решения, где каждый элемент помогает
-            пользователю достичь цели
-          </p>
-        </div>
-
-        <UiButton class="hero-section__button" text="перейти к проектам">
-          <IconLink />
-        </UiButton>
-
-        <img
-          v-for="name in stickerNames"
-          :key="name"
-          v-draggable
-          :src="`/images/stickers/${name}.png`"
-          :alt="name"
-          draggable="false"
-          class="hero-section__sticker"
-          :class="`hero-section__sticker--${name}`"
-        />
+      <div class="hero-section__text text">
+        <p>Меня зовут Лера. Я UX/UI-дизайнер с опытом в три года</p>
+        <p>
+          Работала в небольших дизайн-студиях и над крупным цифровым продуктом —
+          <a href="https://www.sberbank.ru/" target="_blank">sberbank.ru</a> с
+          аудиторией более 30 млн пользователей в месяц
+        </p>
+        <p>
+          Специализируюсь на промо-проектах, но создаю не просто красивые
+          интерфейсы, а продуманные решения, где каждый элемент помогает
+          пользователю достичь цели
+        </p>
       </div>
+
+      <UiButton class="hero-section__button" text="Перейти к проектам">
+        <IconLink />
+      </UiButton>
+
+      <img
+        v-for="name in stickerNames"
+        :key="name"
+        v-draggable
+        :src="`/images/stickers/${name}.png`"
+        :alt="name"
+        draggable="false"
+        class="hero-section__sticker"
+        :class="`hero-section__sticker--${name}`"
+      />
     </div>
   </section>
 </template>

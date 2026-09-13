@@ -1,3 +1,5 @@
+@use '../shared/index' as *;
+
 :root {
   // Colors
   --color-background: #050505;
@@ -7,6 +9,9 @@
   --font-main: 'Roboto Mono', monospace;
 
   // Container
-  --container-max-width: 1600px;
-  --container-padding: 40px;
+  --container-max-width: #{$container-max-width}px;
+  --container-padding: #{$container-padding}px;
+
+  // Common
+  --border-radius: 32px;
 }

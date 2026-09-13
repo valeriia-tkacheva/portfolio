@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { NAME } from './app/constants/common.ts';
+import { NAME } from './shared/utils/constants.ts';
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',

@@ -3,5 +3,10 @@ $break-laptop: 1600px;
 $break-tablet: 1280px;
 $break-mobile: 768px;
 
+// Container
+$container-max-width: 1600;
+$container-padding: 40;
+$content-width: $container-max-width - $container-padding * 2;
+
 // Common
 $trs: 0.3s ease-in-out;

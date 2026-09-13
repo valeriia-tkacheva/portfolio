@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { NAME } from '#shared/utils/constants.ts';
 import { useMoscowTime } from '~/composables/useMoscowTime.ts';
-import { NAME } from '~/constants/common.ts';
 
 const moscowTime = useMoscowTime();
 </script>
