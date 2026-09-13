@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import IconLink from '~/components/icons/IconLink.vue';
+import { createDraggableDirective } from '~/directives/draggable';
+
+const vDraggable = createDraggableDirective();
 
 const stickerNames = [
   'cypa',
@@ -19,8 +22,10 @@ const stickerNames = [
     <div class="container">
       <div class="hero-section__content">
         <img
+          v-draggable
           src="/images/stickers/lerochka.png"
           alt="Лера"
+          draggable="false"
           class="hero-section__photo"
         />
 
@@ -46,8 +51,10 @@ const stickerNames = [
         <img
           v-for="name in stickerNames"
           :key="name"
+          v-draggable
           :src="`/images/stickers/${name}.png`"
           :alt="name"
+          draggable="false"
           class="hero-section__sticker"
           :class="`hero-section__sticker--${name}`"
         />
@@ -65,7 +72,23 @@ const stickerNames = [
     padding: 100px 0 276px;
   }
 
+  &__photo,
+  &__sticker {
+    touch-action: none;
+    user-select: none;
+    cursor: grab;
+
+    @include hover {
+      outline: 2px solid #0b99ff;
+    }
+
+    &[data-dragging] {
+      cursor: grabbing;
+    }
+  }
+
   &__photo {
+    position: relative;
     display: block;
     width: 200px;
   }
