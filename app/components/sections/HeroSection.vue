@@ -1,27 +1,44 @@
 <script setup lang="ts">
-import IconLink from '~/components/icons/IconLink.vue';
 import { createDraggableDirective } from '~/directives/draggable';
+import { toPx } from '#shared/utils/strings.ts';
 
 const vDraggable = createDraggableDirective();
 
-const stickerNames = [
-  'lerochka',
-  'calvin_klein',
-  'cypa',
-  'drinkit',
-  'duolingo_french',
-  'figma',
-  'headphones',
-  'la_la_land',
-  'leafe',
-  'macbook',
-  'new_york',
-  'power',
-  'rodina_mat',
-  'sberkot',
-  'simba',
-  'sunglasses',
-  'uprock',
+interface Sticker {
+  name: string;
+  width: number;
+  zone: 'top' | 'bottom' | 'left' | 'right';
+  offset: number;
+  position: number;
+}
+
+const stickers: Sticker[] = [
+  { name: 'lerochka', width: 214, zone: 'top', offset: 40, position: 0 },
+  { name: 'cypa', width: 69, zone: 'top', offset: 35, position: 265 },
+  { name: 'sunglasses', width: 134, zone: 'top', offset: 167, position: 320 },
+  { name: 'macbook', width: 221, zone: 'top', offset: 57, position: 462 },
+
+  { name: 'sberkot', width: 147, zone: 'left', offset: 203, position: -176 },
+  { name: 'drinkit', width: 111, zone: 'left', offset: 57, position: -57 },
+  { name: 'rodina_mat', width: 160, zone: 'left', offset: 228, position: 67 },
+  { name: 'uprock', width: 104, zone: 'left', offset: 91, position: 123 },
+  { name: 'calvin_klein', width: 139, zone: 'left', offset: 41, position: 262 },
+
+  {
+    name: 'duolingo_french',
+    width: 138,
+    zone: 'right',
+    offset: 118,
+    position: -214,
+  },
+  { name: 'la_la_land', width: 185, zone: 'right', offset: 71, position: -39 },
+  { name: 'leafe', width: 88, zone: 'right', offset: 247, position: 145 },
+  { name: 'new_york', width: 187, zone: 'right', offset: 43, position: 231 },
+
+  { name: 'headphones', width: 113, zone: 'bottom', offset: 97, position: 50 },
+  { name: 'figma', width: 55, zone: 'bottom', offset: 14, position: 228 },
+  { name: 'simba', width: 209, zone: 'bottom', offset: 90, position: 310 },
+  { name: 'power', width: 107, zone: 'bottom', offset: -20, position: 518 },
 ];
 </script>
 
@@ -29,14 +46,19 @@ const stickerNames = [
   <section class="hero-section container">
     <div class="hero-section__content">
       <img
-        v-for="name in stickerNames"
-        :key="name"
+        v-for="sticker in stickers"
+        :key="sticker.name"
         v-draggable
-        :src="`/images/stickers/${name}.png`"
-        :alt="name"
+        :src="`/images/stickers/${sticker.name}.png`"
+        :alt="sticker.name"
         draggable="false"
         class="hero-section__sticker"
-        :class="`hero-section__sticker--${name}`"
+        :class="`hero-section__sticker--zone-${sticker.zone}`"
+        :style="{
+          '--width': toPx(sticker.width),
+          '--offset': toPx(sticker.offset),
+          '--position': toPx(sticker.position),
+        }"
       />
 
       <div class="hero-section__text text">
@@ -61,37 +83,6 @@ const stickerNames = [
 </template>
 
 <style lang="scss">
-@use 'sass:map';
-
-@mixin sticker($name, $width, $zone, $offset, $position) {
-  $side: map.get(
-    (
-      top: bottom,
-      bottom: top,
-      left: right,
-      right: left,
-    ),
-    $zone
-  );
-
-  @if $side == null {
-    @error 'Unknown sticker zone: #{$zone}. Expected top, bottom, left, or right.';
-  }
-
-  &--#{$name} {
-    #{$side}: 100%;
-    margin-#{$side}: $offset * 1px;
-
-    @if $zone == top or $zone == bottom {
-      left: $position * 1px;
-    } @else {
-      top: $position * 1px;
-    }
-
-    width: $width * 1px;
-  }
-}
-
 .hero-section {
   @include flex-center;
   min-height: 100vh;
@@ -117,6 +108,7 @@ const stickerNames = [
 
   &__sticker {
     position: absolute;
+    width: var(--width);
     touch-action: none;
     user-select: none;
     cursor: grab;
@@ -129,26 +121,29 @@ const stickerNames = [
       cursor: grabbing;
     }
 
-    @include sticker('lerochka', 214, 'top', 40, 0);
-    @include sticker('cypa', 69, 'top', 35, 265);
-    @include sticker('sunglasses', 134, 'top', 167, 320);
-    @include sticker('macbook', 221, 'top', 57, 462);
+    &--zone-top {
+      bottom: 100%;
+      margin-bottom: var(--offset);
+      left: var(--position);
+    }
 
-    @include sticker('sberkot', 147, 'left', 203, -176);
-    @include sticker('drinkit', 111, 'left', 57, -57);
-    @include sticker('rodina_mat', 160, 'left', 228, 67);
-    @include sticker('uprock', 104, 'left', 91, 123);
-    @include sticker('calvin_klein', 139, 'left', 41, 262);
+    &--zone-bottom {
+      top: 100%;
+      margin-top: var(--offset);
+      left: var(--position);
+    }
 
-    @include sticker('duolingo_french', 138, 'right', 118, -214);
-    @include sticker('la_la_land', 185, 'right', 71, -39);
-    @include sticker('leafe', 88, 'right', 247, 145);
-    @include sticker('new_york', 187, 'right', 43, 231);
+    &--zone-left {
+      right: 100%;
+      margin-right: var(--offset);
+      top: var(--position);
+    }
 
-    @include sticker('headphones', 113, 'bottom', 97, 50);
-    @include sticker('figma', 55, 'bottom', 14, 228);
-    @include sticker('simba', 209, 'bottom', 90, 310);
-    @include sticker('power', 107, 'bottom', -20, 518);
+    &--zone-right {
+      left: 100%;
+      margin-left: var(--offset);
+      top: var(--position);
+    }
   }
 }
 </style>
