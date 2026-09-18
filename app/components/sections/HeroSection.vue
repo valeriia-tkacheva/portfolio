@@ -5,15 +5,23 @@ import { createDraggableDirective } from '~/directives/draggable';
 const vDraggable = createDraggableDirective();
 
 const stickerNames = [
+  'lerochka',
+  'calvin_klein',
   'cypa',
-  'headphones',
-  'rodina_mama',
-  'power',
-  'simba',
+  'drinkit',
+  'duolingo_french',
   'figma',
-  'popcorne',
+  'headphones',
+  'la_la_land',
+  'leafe',
   'macbook',
+  'new_york',
+  'power',
+  'rodina_mat',
   'sberkot',
+  'simba',
+  'sunglasses',
+  'uprock',
 ];
 </script>
 
@@ -21,17 +29,20 @@ const stickerNames = [
   <section class="hero-section container">
     <div class="hero-section__content">
       <img
+        v-for="name in stickerNames"
+        :key="name"
         v-draggable
-        src="/images/stickers/lerochka.png"
-        alt="Лера"
+        :src="`/images/stickers/${name}.png`"
+        :alt="name"
         draggable="false"
-        class="hero-section__photo"
+        class="hero-section__sticker"
+        :class="`hero-section__sticker--${name}`"
       />
 
       <div class="hero-section__text text">
         <p>Меня зовут Лера. Я UX/UI-дизайнер с опытом в три года</p>
         <p>
-          Работала в небольших дизайн-студиях и над крупным цифровым продуктом —
+          Работала в дизайн-студиях и над крупным цифровым продуктом —
           <a href="https://www.sberbank.ru/" target="_blank">sberbank.ru</a> с
           аудиторией более 30 млн пользователей в месяц
         </p>
@@ -45,54 +56,55 @@ const stickerNames = [
       <UiButton class="hero-section__button" text="Перейти к проектам">
         <IconLink />
       </UiButton>
-
-      <img
-        v-for="name in stickerNames"
-        :key="name"
-        v-draggable
-        :src="`/images/stickers/${name}.png`"
-        :alt="name"
-        draggable="false"
-        class="hero-section__sticker"
-        :class="`hero-section__sticker--${name}`"
-      />
     </div>
   </section>
 </template>
 
 <style lang="scss">
+@use 'sass:map';
+
+@mixin sticker($name, $width, $zone, $offset, $position) {
+  $side: map.get(
+    (
+      top: bottom,
+      bottom: top,
+      left: right,
+      right: left,
+    ),
+    $zone
+  );
+
+  @if $side == null {
+    @error 'Unknown sticker zone: #{$zone}. Expected top, bottom, left, or right.';
+  }
+
+  &--#{$name} {
+    #{$side}: 100%;
+    margin-#{$side}: $offset * 1px;
+
+    @if $zone == top or $zone == bottom {
+      left: $position * 1px;
+    } @else {
+      top: $position * 1px;
+    }
+
+    width: $width * 1px;
+  }
+}
+
 .hero-section {
+  @include flex-center;
+  min-height: 100vh;
+  padding-top: 400px;
+  padding-bottom: 300px;
+
   &__content {
     position: relative;
     max-width: 634px;
-    margin: 0 auto;
-    padding: 100px 0 276px;
-  }
-
-  &__photo,
-  &__sticker {
-    touch-action: none;
-    user-select: none;
-    cursor: grab;
-
-    @include hover {
-      outline: 2px solid #0b99ff;
-    }
-
-    &[data-dragging] {
-      cursor: grabbing;
-    }
-  }
-
-  &__photo {
-    position: relative;
-    display: block;
-    width: 200px;
+    margin: auto;
   }
 
   &__text {
-    margin-top: 40px;
-
     @include media-up($break-laptop) {
       font-size: 20px;
       line-height: 28px;
@@ -105,60 +117,38 @@ const stickerNames = [
 
   &__sticker {
     position: absolute;
+    touch-action: none;
+    user-select: none;
+    cursor: grab;
 
-    &--cypa {
-      top: 120px;
-      left: 278px;
-      width: 74px;
+    @include hover {
+      outline: 2px solid #0b99ff;
     }
 
-    &--headphones {
-      top: 84px;
-      left: 505px;
-      width: 128px;
+    &[data-dragging] {
+      cursor: grabbing;
     }
 
-    &--rodina_mama {
-      top: 185px;
-      right: -262px;
-      width: 148px;
-    }
+    @include sticker('lerochka', 214, 'top', 40, 0);
+    @include sticker('cypa', 69, 'top', 35, 265);
+    @include sticker('sunglasses', 134, 'top', 167, 320);
+    @include sticker('macbook', 221, 'top', 57, 462);
 
-    &--power {
-      bottom: 167px;
-      right: -335px;
-      width: 140px;
-    }
+    @include sticker('sberkot', 147, 'left', 203, -176);
+    @include sticker('drinkit', 111, 'left', 57, -57);
+    @include sticker('rodina_mat', 160, 'left', 228, 67);
+    @include sticker('uprock', 104, 'left', 91, 123);
+    @include sticker('calvin_klein', 139, 'left', 41, 262);
 
-    &--simba {
-      bottom: 51px;
-      left: 454px;
-      width: 223px;
-    }
+    @include sticker('duolingo_french', 138, 'right', 118, -214);
+    @include sticker('la_la_land', 185, 'right', 71, -39);
+    @include sticker('leafe', 88, 'right', 247, 145);
+    @include sticker('new_york', 187, 'right', 43, 231);
 
-    &--figma {
-      bottom: 163px;
-      left: 258px;
-      width: 70px;
-    }
-
-    &--popcorne {
-      bottom: 47px;
-      right: 509px;
-      width: 136px;
-    }
-
-    &--macbook {
-      bottom: 156px;
-      left: -385px;
-      width: 260px;
-    }
-
-    &--sberkot {
-      top: 233px;
-      left: -292px;
-      width: 153px;
-    }
+    @include sticker('headphones', 113, 'bottom', 97, 50);
+    @include sticker('figma', 55, 'bottom', 14, 228);
+    @include sticker('simba', 209, 'bottom', 90, 310);
+    @include sticker('power', 107, 'bottom', -20, 518);
   }
 }
 </style>

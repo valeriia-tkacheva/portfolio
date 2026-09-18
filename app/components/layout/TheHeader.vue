@@ -25,7 +25,10 @@ const moscowTime = useMoscowTime();
 
 <style lang="scss">
 .header {
-  padding-top: 30px;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
   text-transform: uppercase;
 
   &__container {
