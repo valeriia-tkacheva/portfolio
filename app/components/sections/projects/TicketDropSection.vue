@@ -31,10 +31,12 @@ const project: Project = {
 <style lang="scss">
 .ticket-drop-section {
   &__grid {
+    $grid-height: 1004;
     grid-template-columns:
       percentContentWidth(410)
       1fr
       percentContentWidth(748);
+    grid-template-rows: percentRatio(500, $grid-height) 1fr;
     aspect-ratio: $content-width / 1004;
   }
 
