@@ -24,13 +24,7 @@ const stickers: Sticker[] = [
   { name: 'uprock', width: 104, zone: 'left', offset: 91, position: 123 },
   { name: 'calvin_klein', width: 139, zone: 'left', offset: 41, position: 262 },
 
-  {
-    name: 'duolingo_french',
-    width: 138,
-    zone: 'right',
-    offset: 118,
-    position: -214,
-  },
+  { name: 'duolingo_french', width: 138, zone: 'right', offset: 118, position: -214 },
   { name: 'la_la_land', width: 185, zone: 'right', offset: 71, position: -39 },
   { name: 'leafe', width: 88, zone: 'right', offset: 247, position: 145 },
   { name: 'new_york', width: 187, zone: 'right', offset: 43, position: 231 },
@@ -65,13 +59,12 @@ const stickers: Sticker[] = [
         <p>Меня зовут Лера. Я UX/UI-дизайнер с опытом в три года</p>
         <p>
           Работала в дизайн-студиях и над крупным цифровым продуктом —
-          <a href="https://www.sberbank.ru/" target="_blank">sberbank.ru</a> с
-          аудиторией более 30 млн пользователей в месяц
+          <a href="https://www.sberbank.ru/" target="_blank">sberbank.ru</a> с аудиторией более 30
+          млн пользователей в месяц
         </p>
         <p>
-          Специализируюсь на промо-проектах, но создаю не просто красивые
-          интерфейсы, а продуманные решения, где каждый элемент помогает
-          пользователю достичь цели
+          Специализируюсь на промо-проектах, но создаю не просто красивые интерфейсы, а продуманные
+          решения, где каждый элемент помогает пользователю достичь цели
         </p>
       </div>
 

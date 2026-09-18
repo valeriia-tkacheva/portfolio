@@ -13,11 +13,7 @@ const items: Item[] = [
 
 <template>
   <ul class="contact-links">
-    <li
-      v-for="{ title, href } in items"
-      :key="title"
-      class="contact-links__item"
-    >
+    <li v-for="{ title, href } in items" :key="title" class="contact-links__item">
       <a :href="href" target="_blank">{{ title }}</a>
     </li>
   </ul>

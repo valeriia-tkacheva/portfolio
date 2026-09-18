@@ -16,10 +16,7 @@ const project: Project = {
 </script>
 
 <template>
-  <ProjectSectionBase
-    :project="project"
-    grid-class="sber-spasibo-section__grid"
-  >
+  <ProjectSectionBase :project="project" grid-class="sber-spasibo-section__grid">
     <UiImage
       v-for="(src, index) in previews"
       :key="index"

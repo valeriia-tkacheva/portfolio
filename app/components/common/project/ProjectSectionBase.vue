@@ -20,11 +20,7 @@ const { name, company, type, year } = project;
     </div>
 
     <ul class="project-section__info-list">
-      <li
-        v-for="item in [company, type, year]"
-        :key="item"
-        class="project-section__info-item"
-      >
+      <li v-for="item in [company, type, year]" :key="item" class="project-section__info-item">
         {{ item }}
       </li>
     </ul>

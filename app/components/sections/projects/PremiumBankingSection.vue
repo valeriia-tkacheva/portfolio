@@ -15,10 +15,7 @@ const project: Project = {
 </script>
 
 <template>
-  <ProjectSectionBase
-    :project="project"
-    grid-class="premium-banking-section__grid"
-  >
+  <ProjectSectionBase :project="project" grid-class="premium-banking-section__grid">
     <UiImage
       v-for="(src, index) in previews"
       :key="index"

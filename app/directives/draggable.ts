@@ -32,10 +32,7 @@ export function createDraggableDirective(): ObjectDirective<HTMLElement> {
         pointerId = null;
         element.removeAttribute('data-dragging');
 
-        if (
-          capturedPointerId !== null &&
-          element.hasPointerCapture(capturedPointerId)
-        ) {
+        if (capturedPointerId !== null && element.hasPointerCapture(capturedPointerId)) {
           element.releasePointerCapture(capturedPointerId);
         }
       };
