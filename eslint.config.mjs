@@ -6,5 +6,6 @@ export default withNuxt(prettier, {
   rules: {
     'import/newline-after-import': ['error', { count: 1, exactCount: true }],
     'vue/require-default-prop': 'off',
+    'vue/no-v-html': 'off',
   },
 });

@@ -68,8 +68,6 @@ button {
 }
 
 .hover-opacity {
-  transition: opacity $trs;
-
   @include hover {
     opacity: 0.7;
   }

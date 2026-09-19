@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Project } from '#shared/types/Project.ts';
+import { useProjectModal } from '~/composables/useProjectModal.ts';
 
 interface Props {
   project: Project;
@@ -8,13 +9,20 @@ interface Props {
 
 const { project, gridClass } = defineProps<Props>();
 const { name, company, type, year } = project;
+
+const { open } = useProjectModal();
 </script>
 
 <template>
   <section class="project-section container">
     <div class="project-section__head">
       <h2 class="project-section__title">{{ name }}</h2>
-      <UiButton class="project-section__button" text="Подробнее о проекте">
+      <UiButton
+        v-if="project.details"
+        class="project-section__button"
+        text="Подробнее о проекте"
+        @click="open(project)"
+      >
         <IconPlay />
       </UiButton>
     </div>

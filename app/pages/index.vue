@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { useProjectModal } from '~/composables/useProjectModal.ts';
+
+const { selectedProject, close } = useProjectModal();
+</script>
+
 <template>
   <div class="home-page">
     <HeroSection />
@@ -10,6 +16,12 @@
     <KinopoiskSection class="home-page__project-section" />
 
     <ProjectsFooterSection class="home-page__project-section" />
+
+    <ProjectModal
+      v-if="selectedProject?.details"
+      :project-details="selectedProject.details"
+      @close="close"
+    />
   </div>
 </template>
 
