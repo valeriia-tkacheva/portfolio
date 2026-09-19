@@ -9,12 +9,14 @@
     <WonderfulStaysSection class="home-page__project-section" />
     <KinopoiskSection class="home-page__project-section" />
 
-    <div style="margin-top: 100px" />
+    <ProjectsFooterSection class="home-page__project-section" />
   </div>
 </template>
 
 <style lang="scss">
 .home-page {
+  padding-bottom: 40px;
+
   &__project-section {
     margin-top: 100px;
   }

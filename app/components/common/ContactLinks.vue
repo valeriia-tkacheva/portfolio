@@ -26,6 +26,7 @@ const items: Item[] = [
   &__item {
     display: flex;
     align-items: center;
+    text-transform: uppercase;
 
     &:not(:first-child) {
       &::before {

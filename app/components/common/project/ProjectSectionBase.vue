@@ -33,7 +33,7 @@ const { name, company, type, year } = project;
 
 <style lang="scss">
 .project-section {
-  padding-top: 50px;
+  padding-top: 30px;
 
   &__head {
     display: flex;

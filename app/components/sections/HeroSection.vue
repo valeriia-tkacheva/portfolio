@@ -55,7 +55,7 @@ const stickers: Sticker[] = [
         }"
       />
 
-      <div class="hero-section__text text">
+      <div class="hero-section__text text-block">
         <p>Меня зовут Лера. Я UX/UI-дизайнер с опытом в три года</p>
         <p>
           Работала в дизайн-студиях и над крупным цифровым продуктом —
@@ -89,10 +89,8 @@ const stickers: Sticker[] = [
   }
 
   &__text {
-    @include media-up($break-laptop) {
-      font-size: 20px;
-      line-height: 28px;
-    }
+    font-size: 20px;
+    line-height: 28px;
   }
 
   &__button {

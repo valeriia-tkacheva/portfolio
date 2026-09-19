@@ -9,9 +9,7 @@ body {
   font-optical-sizing: none !important;
 }
 
-.text {
-  line-height: 23px;
-
+.text-block {
   p {
     &:not(:first-child) {
       margin-top: 12px;
