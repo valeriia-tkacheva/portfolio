@@ -43,7 +43,7 @@ const stickers: Sticker[] = [
         v-for="sticker in stickers"
         :key="sticker.name"
         v-draggable
-        :src="`/images/stickers/${sticker.name}.png`"
+        :src="$public(`/images/stickers/${sticker.name}.png`)"
         :alt="sticker.name"
         draggable="false"
         class="hero-section__sticker"

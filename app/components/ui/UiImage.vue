@@ -9,7 +9,7 @@ const { src, border } = defineProps<Props>();
 
 <template>
   <div class="ui-image img-box" :class="{ 'ui-image--border': border }">
-    <img :src="src" alt="Image" draggable="false" />
+    <img :src="$public(src)" alt="Image" draggable="false" />
   </div>
 </template>
 

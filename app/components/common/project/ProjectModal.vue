@@ -41,7 +41,7 @@ onBeforeUnmount(() => document.body.classList.remove('overflow-hidden'));
       </UiButton>
 
       <div class="project-modal__images">
-        <img v-for="src in images" :key="src" :src="src" alt="" />
+        <img v-for="src in images" :key="src" :src="$public(src)" alt="" />
       </div>
     </div>
   </div>

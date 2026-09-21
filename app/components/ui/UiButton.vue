@@ -8,7 +8,7 @@ const { text, href } = defineProps<Props>();
 </script>
 
 <template>
-  <component :is="href ? 'a' : 'button'" :href="href" class="ui-button">
+  <component :is="href ? 'a' : 'button'" :href="$public(href)" class="ui-button">
     <slot />
     <span>{{ text }}</span>
   </component>
