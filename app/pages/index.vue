@@ -8,7 +8,7 @@ const { selectedProject, close } = useProjectModal();
   <div class="home-page">
     <HeroSection />
 
-    <SberPrimeSection class="home-page__project-section" />
+    <SberPrimeSection id="projects" class="home-page__project-section" />
     <TicketDropSection class="home-page__project-section" />
     <PremiumBankingSection class="home-page__project-section" />
     <SberSpasiboSection class="home-page__project-section" />

@@ -34,6 +34,10 @@ const stickers: Sticker[] = [
   { name: 'simba', width: 209, zone: 'bottom', offset: 90, position: 310 },
   { name: 'power', width: 107, zone: 'bottom', offset: -20, position: 518 },
 ];
+
+function scrollToProjects() {
+  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 </script>
 
 <template>
@@ -68,7 +72,7 @@ const stickers: Sticker[] = [
         </p>
       </div>
 
-      <UiButton class="hero-section__button" text="Перейти к проектам">
+      <UiButton class="hero-section__button" text="Перейти к проектам" @click="scrollToProjects">
         <IconLink />
       </UiButton>
     </div>
