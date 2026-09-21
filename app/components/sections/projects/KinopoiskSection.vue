@@ -13,7 +13,7 @@ const project: Project = {
   type: 'Концепт',
   year: 2026,
   externalLink: {
-    url: '/projects/kinopoisk/Презентация_Редизайн_Кинопоиск.pdf',
+    url: '/projects/kinopoisk/kinopoisk-redesign.pdf',
     title: 'Смотреть презентацию',
   },
 };
