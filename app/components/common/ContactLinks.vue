@@ -5,9 +5,9 @@ interface Item {
 }
 
 const items: Item[] = [
-  { title: 'Behance', href: '#' },
-  { title: 'Telegram', href: '#' },
-  { title: 'Gmail', href: '#' },
+  { title: 'Behance', href: 'https://www.behance.net/soma_a' },
+  { title: 'Telegram', href: 'https://t.me/valeriabndrnk' },
+  { title: 'Gmail', href: 'mailto:valeriiabondarenko01@gmail.com' },
 ];
 </script>
 
