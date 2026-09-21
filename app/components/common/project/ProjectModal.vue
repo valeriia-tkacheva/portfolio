@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import IconClose from '~/components/icons/IconClose.vue';
-import type { Project } from '#shared/types/Project.ts';
+import type { ProjectDetails } from '#shared/types/Project.ts';
 
 interface Props {
-  projectDetails: NonNullable<Project['details']>;
+  projectDetails: ProjectDetails;
 }
 
 const { projectDetails } = defineProps<Props>();
 defineEmits(['close']);
 
 const { title, text, siteUrl, images, modClass } = projectDetails;
+
+onMounted(() => document.body.classList.add('overflow-hidden'));
+onBeforeUnmount(() => document.body.classList.remove('overflow-hidden'));
 </script>
 
 <template>
@@ -21,9 +24,11 @@ const { title, text, siteUrl, images, modClass } = projectDetails;
     </div>
 
     <div class="project-modal__content">
-      <p class="project-modal__title" v-html="title" />
+      <p class="project-modal__title">{{ title }}</p>
 
-      <div class="project-modal__text text-block" v-html="text" />
+      <div class="project-modal__text text-block">
+        <p v-for="(p, index) in text" :key="index">{{ p }}</p>
+      </div>
 
       <UiButton
         v-if="siteUrl"
@@ -64,7 +69,7 @@ const { title, text, siteUrl, images, modClass } = projectDetails;
   }
 
   &__content {
-    max-width: 640px + 24px * 2;
+    max-width: 715px + 24px * 2;
     padding: 70px 24px 100px;
     margin: 0 auto;
     text-align: center;

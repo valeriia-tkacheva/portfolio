@@ -11,6 +11,21 @@ const project: Project = {
   company: 'Сбер',
   type: 'Редизайн',
   year: 2026,
+  details: {
+    title: 'Новый элегантный дизайн Премиум сегмента сбера',
+    text: [
+      'Сдержанная технологичная роскошь: спокойствие, приватность, лёгкость и\u00a0безупречный комфорт. Премиальность раскрывается не\u00a0через демонстративный статус, а\u00a0через пространство, визуальную тишину и\u00a0внимание к\u00a0деталям.',
+      'Новый дизайн премиум сегмента на\u00a0сайте основан на\u00a0обновлённом брендбуке. Раздел обрёл уникальный характер, в\u00a0который заложены идеи минимализма, воздушности и\u00a0элегантности',
+    ],
+    siteUrl: 'https://www.sberbank.ru/ru/person/bank_cards/debit/sberkarta_premium',
+    images: [
+      '/projects/premium-banking/view-1.png',
+      '/projects/premium-banking/view-2.png',
+      '/projects/premium-banking/view-3.png',
+      '/projects/premium-banking/view-4.png',
+      '/projects/premium-banking/view-5.png',
+    ],
+  },
 };
 </script>
 

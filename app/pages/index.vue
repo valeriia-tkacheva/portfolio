@@ -20,6 +20,7 @@ const { selectedProject, close } = useProjectModal();
     <ProjectModal
       v-if="selectedProject?.details"
       :project-details="selectedProject.details"
+      :class="selectedProject.modalClass"
       @close="close"
     />
   </div>
