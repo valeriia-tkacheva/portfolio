@@ -13,12 +13,7 @@ const moscowTime = useMoscowTime();
       <div class="header__main">
         <p class="header__name">{{ NAME }}</p>
 
-        <UiButton
-          :href="$public('/valeriia-tkacheva.pdf')"
-          class="header__resume"
-          text="Резюме"
-          download
-        >
+        <UiButton href="/valeriia-tkacheva.pdf" class="header__resume" text="Резюме" download>
           <IconDownload />
         </UiButton>
       </div>
