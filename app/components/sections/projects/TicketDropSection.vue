@@ -13,6 +13,10 @@ const project: Project = {
   company: 'Uprock School',
   type: 'Концепт',
   year: 2024,
+  externalLink: {
+    url: 'https://www.behance.net/gallery/213547005/Ticket-Drop-Mobile-app',
+    title: 'Кейс на Behance',
+  },
 };
 </script>
 

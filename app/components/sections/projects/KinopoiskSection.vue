@@ -12,6 +12,10 @@ const project: Project = {
   company: 'Сбер Университет',
   type: 'Концепт',
   year: 2026,
+  externalLink: {
+    url: '/projects/kinopoisk/Презентация_Редизайн_Кинопоиск.pdf',
+    title: 'Смотреть презентацию',
+  },
 };
 </script>
 

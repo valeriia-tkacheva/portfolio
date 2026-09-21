@@ -5,6 +5,11 @@ export interface ProjectDetails {
   images: string[];
 }
 
+export interface ProjectExternalLink {
+  url: string;
+  title: string;
+}
+
 export interface Project {
   name: string;
   company: string;
@@ -12,4 +17,5 @@ export interface Project {
   year: number;
   details?: ProjectDetails;
   modalClass?: string;
+  externalLink?: ProjectExternalLink;
 }

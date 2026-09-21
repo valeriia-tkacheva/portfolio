@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { project, gridClass } = defineProps<Props>();
-const { name, company, type, year } = project;
+const { name, company, type, year, details, externalLink } = project;
 
 const { open } = useProjectModal();
 </script>
@@ -18,10 +18,19 @@ const { open } = useProjectModal();
     <div class="project-section__head">
       <h2 class="project-section__title">{{ name }}</h2>
       <UiButton
-        v-if="project.details"
+        v-if="details"
         class="project-section__button"
         text="Подробнее о проекте"
         @click="open(project)"
+      >
+        <IconPlay />
+      </UiButton>
+
+      <UiButton
+        v-else-if="externalLink"
+        :href="externalLink.url"
+        target="_blank"
+        :text="externalLink.title"
       >
         <IconPlay />
       </UiButton>
