@@ -65,6 +65,10 @@ const { open } = useProjectModal();
     display: grid;
     grid-gap: 24px;
     margin-top: 32px;
+
+    @include media-down($break-laptop) {
+      grid-gap: 20px;
+    }
   }
 
   &__info-list {

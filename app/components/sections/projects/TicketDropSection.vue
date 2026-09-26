@@ -47,6 +47,10 @@ const project: Project = {
   &__item {
     &:nth-child(1) {
       border-radius: 140px;
+
+      @include media-down($break-laptop) {
+        border-radius: 110px;
+      }
     }
 
     &:nth-child(2) {

@@ -32,6 +32,10 @@ const { selectedProject, close } = useProjectModal();
 
   &__project-section {
     margin-top: 100px;
+
+    @include media-down($break-laptop) {
+      margin-top: 70px;
+    }
   }
 }
 </style>

@@ -6,33 +6,135 @@ const vDraggable = createDraggableDirective();
 
 interface Sticker {
   name: string;
-  width: number;
-  zone: 'top' | 'bottom' | 'left' | 'right';
-  offset: number;
-  position: number;
+  side: 'top' | 'bottom' | 'left' | 'right';
+  width: [number, number];
+  offset: [number, number];
+  position: [number, number];
 }
 
 const stickers: Sticker[] = [
-  { name: 'lerochka', width: 214, zone: 'top', offset: 40, position: 0 },
-  { name: 'cypa', width: 69, zone: 'top', offset: 35, position: 265 },
-  { name: 'sunglasses', width: 134, zone: 'top', offset: 167, position: 320 },
-  { name: 'macbook', width: 221, zone: 'top', offset: 57, position: 462 },
+  {
+    name: 'lerochka',
+    side: 'top',
+    width: [214, 180],
+    offset: [40, 30],
+    position: [0, 0],
+  },
+  {
+    name: 'cypa',
+    side: 'top',
+    width: [69, 57],
+    offset: [35, 30],
+    position: [265, 247],
+  },
+  {
+    name: 'sunglasses',
+    side: 'top',
+    width: [134, 107],
+    offset: [167, 114],
+    position: [320, 285],
+  },
+  {
+    name: 'macbook',
+    side: 'top',
+    width: [221, 181],
+    offset: [57, 32],
+    position: [462, 399],
+  },
 
-  { name: 'sberkot', width: 147, zone: 'left', offset: 203, position: -176 },
-  { name: 'drinkit', width: 111, zone: 'left', offset: 57, position: -57 },
-  { name: 'rodina_mat', width: 160, zone: 'left', offset: 228, position: 67 },
-  { name: 'uprock', width: 104, zone: 'left', offset: 91, position: 123 },
-  { name: 'calvin_klein', width: 139, zone: 'left', offset: 41, position: 262 },
+  {
+    name: 'sberkot',
+    side: 'left',
+    width: [147, 120],
+    offset: [203, 156],
+    position: [-176, -137],
+  },
+  {
+    name: 'drinkit',
+    side: 'left',
+    width: [111, 86],
+    offset: [57, 71],
+    position: [-57, -12],
+  },
+  {
+    name: 'rodina_mat',
+    side: 'left',
+    width: [160, 135],
+    offset: [228, 142],
+    position: [67, 63],
+  },
+  {
+    name: 'uprock',
+    side: 'left',
+    width: [104, 86],
+    offset: [91, 38],
+    position: [123, 135],
+  },
+  {
+    name: 'calvin_klein',
+    side: 'left',
+    width: [139, 109],
+    offset: [41, 13],
+    position: [262, 240],
+  },
 
-  { name: 'duolingo_french', width: 138, zone: 'right', offset: 118, position: -214 },
-  { name: 'la_la_land', width: 185, zone: 'right', offset: 71, position: -39 },
-  { name: 'leafe', width: 88, zone: 'right', offset: 247, position: 145 },
-  { name: 'new_york', width: 187, zone: 'right', offset: 43, position: 231 },
+  {
+    name: 'duolingo_french',
+    side: 'right',
+    width: [138, 108],
+    offset: [118, 22],
+    position: [-214, -183],
+  },
+  {
+    name: 'la_la_land',
+    side: 'right',
+    width: [185, 170],
+    offset: [71, 37],
+    position: [-39, -51],
+  },
+  {
+    name: 'leafe',
+    side: 'right',
+    width: [88, 59],
+    offset: [247, 194],
+    position: [145, 97],
+  },
+  {
+    name: 'new_york',
+    side: 'right',
+    width: [187, 153],
+    offset: [43, 68],
+    position: [231, 178],
+  },
 
-  { name: 'headphones', width: 113, zone: 'bottom', offset: 97, position: 50 },
-  { name: 'figma', width: 55, zone: 'bottom', offset: 14, position: 228 },
-  { name: 'simba', width: 209, zone: 'bottom', offset: 90, position: 310 },
-  { name: 'power', width: 107, zone: 'bottom', offset: -20, position: 518 },
+  {
+    name: 'headphones',
+    side: 'bottom',
+    width: [113, 95],
+    offset: [97, 37],
+    position: [50, 90],
+  },
+  {
+    name: 'figma',
+    side: 'bottom',
+    width: [55, 52],
+    offset: [14, -9],
+    position: [228, 249],
+  },
+  {
+    name: 'simba',
+    side: 'bottom',
+    width: [209, 176],
+    offset: [90, 4],
+    position: [310, 340],
+  },
+  {
+    name: 'power',
+    side: 'bottom',
+    width: [107, 88],
+    offset: [-20, -31],
+    position: [518, 548],
+  },
 ];
 
 function scrollToProjects() {
@@ -44,18 +146,27 @@ function scrollToProjects() {
   <section class="hero-section container">
     <div class="hero-section__content">
       <img
-        v-for="sticker in stickers"
-        :key="sticker.name"
+        v-for="{
+          name,
+          side,
+          width: [width, widthLaptop],
+          offset: [offset, offsetLaptop],
+          position: [position, positionLaptop],
+        } in stickers"
+        :key="name"
         v-draggable
-        :src="$public(`/images/stickers/${sticker.name}.png`)"
-        :alt="sticker.name"
+        :src="$public(`/images/stickers/${name}.png`)"
+        :alt="name"
         draggable="false"
         class="hero-section__sticker"
-        :class="`hero-section__sticker--zone-${sticker.zone}`"
+        :class="`hero-section__sticker--side-${side}`"
         :style="{
-          '--width': toPx(sticker.width),
-          '--offset': toPx(sticker.offset),
-          '--position': toPx(sticker.position),
+          '--width': toPx(width),
+          '--offset': toPx(offset),
+          '--position': toPx(position),
+          '--width-laptop': toPx(widthLaptop),
+          '--offset-laptop': toPx(offsetLaptop),
+          '--position-laptop': toPx(positionLaptop),
         }"
       />
 
@@ -86,6 +197,11 @@ function scrollToProjects() {
   padding-top: 400px;
   padding-bottom: 300px;
 
+  @include media-down($break-laptop) {
+    padding-top: 315px;
+    padding-bottom: 150px;
+  }
+
   &__content {
     position: relative;
     max-width: 634px;
@@ -108,6 +224,10 @@ function scrollToProjects() {
     user-select: none;
     cursor: grab;
 
+    @include media-down($break-laptop) {
+      width: var(--width-laptop);
+    }
+
     @include hover {
       outline: 2px solid #0b99ff;
     }
@@ -116,28 +236,48 @@ function scrollToProjects() {
       cursor: grabbing;
     }
 
-    &--zone-top {
+    &--side-top {
       bottom: 100%;
       margin-bottom: var(--offset);
       left: var(--position);
+
+      @include media-down($break-laptop) {
+        margin-bottom: var(--offset-laptop);
+        left: var(--position-laptop);
+      }
     }
 
-    &--zone-bottom {
+    &--side-bottom {
       top: 100%;
       margin-top: var(--offset);
       left: var(--position);
+
+      @include media-down($break-laptop) {
+        margin-top: var(--offset-laptop);
+        left: var(--position-laptop);
+      }
     }
 
-    &--zone-left {
+    &--side-left {
       right: 100%;
       margin-right: var(--offset);
       top: var(--position);
+
+      @include media-down($break-laptop) {
+        margin-right: var(--offset-laptop);
+        top: var(--position-laptop);
+      }
     }
 
-    &--zone-right {
+    &--side-right {
       left: 100%;
       margin-left: var(--offset);
       top: var(--position);
+
+      @include media-down($break-laptop) {
+        margin-left: var(--offset-laptop);
+        top: var(--position-laptop);
+      }
     }
   }
 }
