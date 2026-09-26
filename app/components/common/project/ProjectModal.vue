@@ -9,39 +9,46 @@ interface Props {
 const { projectDetails } = defineProps<Props>();
 defineEmits(['close']);
 
-const { title, text, siteUrl, images, modClass } = projectDetails;
+const { title, text, siteUrl, images } = projectDetails;
+const isScrolled = ref(false);
+
+function onScroll(event: Event) {
+  isScrolled.value = (event.currentTarget as HTMLElement).scrollTop > 0;
+}
 
 onMounted(() => document.body.classList.add('overflow-hidden'));
 onBeforeUnmount(() => document.body.classList.remove('overflow-hidden'));
 </script>
 
 <template>
-  <div class="project-modal" :class="modClass">
-    <div class="project-modal__head">
+  <div class="project-modal">
+    <div class="project-modal__head" :class="{ 'project-modal__head--scrolled': isScrolled }">
       <button type="button" class="project-modal__close hover-opacity" @click="$emit('close')">
         <IconClose />
       </button>
     </div>
 
-    <div class="project-modal__content">
-      <p class="project-modal__title">{{ title }}</p>
+    <div class="project-modal__body" @scroll.passive="onScroll">
+      <div class="project-modal__content">
+        <p class="project-modal__title">{{ title }}</p>
 
-      <div class="project-modal__text text-block">
-        <p v-for="(p, index) in text" :key="index">{{ p }}</p>
-      </div>
+        <div class="project-modal__text text-block">
+          <p v-for="(p, index) in text" :key="index">{{ p }}</p>
+        </div>
 
-      <UiButton
-        v-if="siteUrl"
-        :href="siteUrl"
-        class="project-modal__button"
-        target="_blank"
-        text="Смотреть сайт"
-      >
-        <IconLinkExternal />
-      </UiButton>
+        <UiButton
+          v-if="siteUrl"
+          :href="siteUrl"
+          class="project-modal__button"
+          target="_blank"
+          text="Смотреть сайт"
+        >
+          <IconLinkExternal />
+        </UiButton>
 
-      <div class="project-modal__images">
-        <img v-for="src in images" :key="src" :src="$public(src)" alt="" />
+        <div class="project-modal__images">
+          <img v-for="src in images" :key="src" :src="$public(src)" alt="" />
+        </div>
       </div>
     </div>
   </div>
@@ -55,22 +62,50 @@ onBeforeUnmount(() => document.body.classList.remove('overflow-hidden'));
   right: 0;
   bottom: 0;
   z-index: 100;
-  overflow: auto;
   background-color: rgb(from var(--color-background) r g b / 0.9);
   backdrop-filter: blur(30px);
 
   &__head {
+    z-index: 1;
     @include flex-center;
     padding: 30px 0;
+
+    &,
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    &::before {
+      content: '';
+      z-index: -1;
+      height: 400px;
+      background: linear-gradient(180deg, var(--color-background), transparent);
+      opacity: 0;
+      transition: opacity 0.3s linear;
+      pointer-events: none;
+    }
+
+    &--scrolled::before {
+      opacity: 1;
+    }
   }
 
   &__close {
     font-size: 0;
   }
 
+  &__body {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
   &__content {
     max-width: 715px + 24px * 2;
-    padding: 70px 24px 100px;
+    padding: 154px 24px 100px;
     margin: 0 auto;
     text-align: center;
   }
