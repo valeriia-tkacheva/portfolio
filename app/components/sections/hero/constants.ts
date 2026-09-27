@@ -15,6 +15,13 @@ export const HERO_STICKERS: Sticker[] = [
     position: [0, 0],
   },
   {
+    name: 'simba',
+    side: 'bottom',
+    width: [209, 176],
+    offset: [90, 4],
+    position: [310, 340],
+  },
+  {
     name: 'cypa',
     side: 'top',
     width: [69, 57],
@@ -35,7 +42,6 @@ export const HERO_STICKERS: Sticker[] = [
     offset: [57, 32],
     position: [462, 399],
   },
-
   {
     name: 'sberkot',
     side: 'left',
@@ -100,7 +106,6 @@ export const HERO_STICKERS: Sticker[] = [
     offset: [43, 68],
     position: [231, 178],
   },
-
   {
     name: 'headphones',
     side: 'bottom',
@@ -114,13 +119,6 @@ export const HERO_STICKERS: Sticker[] = [
     width: [55, 52],
     offset: [14, -9],
     position: [228, 249],
-  },
-  {
-    name: 'simba',
-    side: 'bottom',
-    width: [209, 176],
-    offset: [90, 4],
-    position: [310, 340],
   },
   {
     name: 'power',

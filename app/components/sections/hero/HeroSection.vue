@@ -2,18 +2,14 @@
 import { createDraggableDirective } from '~/directives/draggable.ts';
 import { toPx } from '#shared/utils/strings.ts';
 import { HERO_STICKERS } from '~/components/sections/hero/constants.ts';
+import { useMobileStickers } from '~/components/sections/hero/useMobileStickers.ts';
 
 const vDraggable = createDraggableDirective();
 
-const activeMobileSticker = ref(0);
+const { activeMobileSticker, isMobileStickerPeeking, showNextMobileSticker } = useMobileStickers();
 
 function scrollToProjects() {
   document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function showNextMobileSticker() {
-  const current = activeMobileSticker.value;
-  activeMobileSticker.value = current < HERO_STICKERS.length - 1 ? current + 1 : 0;
 }
 </script>
 
@@ -38,9 +34,14 @@ function showNextMobileSticker() {
           :alt="name"
           draggable="false"
           class="hero-section__sticker"
-          :class="`hero-section__sticker--side-${side}`"
+          :class="[
+            `hero-section__sticker--side-${side}`,
+            {
+              'hero-section__sticker--mobile-active': activeMobileSticker === index,
+              'hero-section__sticker--mobile-peeking': index === 1 && isMobileStickerPeeking,
+            },
+          ]"
           :style="{
-            display: activeMobileSticker === index ? 'block' : undefined,
             '--width': toPx(width),
             '--offset': toPx(offset),
             '--position': toPx(position),
@@ -48,6 +49,7 @@ function showNextMobileSticker() {
             '--offset-laptop': toPx(offsetLaptop),
             '--position-laptop': toPx(positionLaptop),
           }"
+          @animationend="isMobileStickerPeeking = false"
         />
       </div>
 
@@ -105,7 +107,10 @@ function showNextMobileSticker() {
     pointer-events: none;
 
     @include media-down($break-tablet) {
-      @include flex-center;
+      display: grid;
+      grid-template: 100% / 100%;
+      place-items: center;
+      isolation: isolate;
       width: 142px;
       height: 142px;
       pointer-events: auto;
@@ -155,10 +160,22 @@ function showNextMobileSticker() {
     @include media-down($break-tablet) {
       display: none;
       position: static;
+      grid-area: 1 / 1;
+      z-index: 1;
       pointer-events: none;
       width: auto;
       max-width: min(var(--width), 100%);
       max-height: 100%;
+
+      &--mobile-active {
+        display: block;
+      }
+
+      &--mobile-peeking {
+        display: block;
+        z-index: 0;
+        animation: hero-sticker-peek 1.5s ease-in-out;
+      }
     }
 
     @include hover {
@@ -221,6 +238,18 @@ function showNextMobileSticker() {
         margin: 0;
       }
     }
+  }
+}
+
+@keyframes hero-sticker-peek {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(35deg) scale(0.65);
+  }
+
+  35%,
+  65% {
+    transform: translate(48%, -35%) rotate(35deg) scale(0.65);
   }
 }
 </style>
