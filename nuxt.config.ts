@@ -6,6 +6,10 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: ['@nuxt/eslint'],
 
+  features: {
+    inlineStyles: false,
+  },
+
   imports: {
     scan: false,
   },
