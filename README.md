@@ -6,23 +6,35 @@ Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduct
 
 The site is published by `.github/workflows/deploy.yml` after a push to `main`.
 
-1. Open the repository's **Settings → Pages**.
-2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-3. Push the workflow and application changes to `main`.
-4. Wait for **Deploy to GitHub Pages** to finish in the **Actions** tab.
+1. To publish at the domain root, name the repository
+   `valeriia-tkacheva.github.io`. For the existing `portfolio` repository, open
+   **Settings → General → Repository name** and rename it.
+2. Open the repository's **Settings → Pages**.
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+4. Push the workflow and application changes to `main`, or select **Actions →
+   Deploy to GitHub Pages → Run workflow** after renaming the repository.
+5. Wait for **Deploy to GitHub Pages** to finish in the **Actions** tab.
 
-The site URL is <https://valeriia-tkacheva.github.io/portfolio/>.
+After the rename and deployment, the site URL is
+<https://valeriia-tkacheva.github.io/>.
 GitHub Pages requires a public repository on the GitHub Free plan.
 No personal access token or additional repository secrets are needed.
 
+Update the local remote after renaming the repository:
+
+```bash
+git remote set-url origin https://github.com/valeriia-tkacheva/valeriia-tkacheva.github.io.git
+```
+
 The workflow installs dependencies with `npm ci`, runs ESLint, and generates the
 site with `npm run generate`. It publishes `.output/public` using the base path
-reported by GitHub Pages. Images and PDF links use the same base path.
+reported by GitHub Pages, which becomes `/` for the user site. Images and PDF
+links use the same base path; no workflow changes are needed for the rename.
 
 To check the GitHub Pages build locally:
 
 ```bash
-NUXT_APP_BASE_URL=/portfolio/ NITRO_PRESET=github_pages npm run generate
+NUXT_APP_BASE_URL=/ NITRO_PRESET=github_pages npm run generate
 ```
 
 ### Public asset URLs
