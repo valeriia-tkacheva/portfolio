@@ -21,6 +21,7 @@ const { open } = useProjectModal();
         v-if="details"
         class="project-section__button"
         text="Подробнее о проекте"
+        short-text="Подробнее"
         @click="open(project)"
       >
         <IconPlay />
@@ -31,6 +32,7 @@ const { open } = useProjectModal();
         :href="externalLink.url"
         target="_blank"
         :text="externalLink.title"
+        :short-text="externalLink.shortTitle"
       >
         <IconPlay />
       </UiButton>
@@ -55,6 +57,10 @@ const { open } = useProjectModal();
   &__head {
     display: flex;
     gap: 20px;
+
+    @include media-down($break-tablet) {
+      justify-content: space-between;
+    }
   }
 
   &__title {
@@ -68,6 +74,20 @@ const { open } = useProjectModal();
 
     @include media-down($break-laptop) {
       grid-gap: 20px;
+    }
+
+    @include media-down($break-tablet) {
+      margin-top: 24px;
+      gap: 12px;
+    }
+
+    .ui-image {
+      img {
+        @include media-down($break-tablet) {
+          position: static;
+          display: block;
+        }
+      }
     }
   }
 

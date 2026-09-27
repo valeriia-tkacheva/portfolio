@@ -8,6 +8,7 @@ export interface ProjectDetails {
 export interface ProjectExternalLink {
   url: string;
   title: string;
+  shortTitle?: string;
 }
 
 export interface Project {

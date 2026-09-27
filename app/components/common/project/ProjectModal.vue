@@ -81,7 +81,7 @@ onBeforeUnmount(() => document.body.classList.remove('overflow-hidden'));
     &::before {
       content: '';
       z-index: -1;
-      height: 400px;
+      height: 40vh;
       background: linear-gradient(180deg, var(--color-background), transparent);
       opacity: 0;
       transition: opacity 0.3s linear;
@@ -108,9 +108,14 @@ onBeforeUnmount(() => document.body.classList.remove('overflow-hidden'));
     padding: 154px 24px 100px;
     margin: 0 auto;
     text-align: center;
+
+    @include media-down($break-mobile) {
+      padding-top: 134px;
+    }
   }
 
   &__title {
+    line-height: 1.5;
     text-transform: uppercase;
   }
 
@@ -128,6 +133,11 @@ onBeforeUnmount(() => document.body.classList.remove('overflow-hidden'));
     flex-direction: column;
     gap: 60px;
     margin-top: 80px;
+
+    @include media-down($break-mobile) {
+      gap: 40px;
+      margin-top: 60px;
+    }
   }
 }
 </style>

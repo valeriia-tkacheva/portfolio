@@ -47,6 +47,11 @@ const project: Project = {
       percentContentWidth(748)
       1fr;
     aspect-ratio: $content-width / 500;
+
+    @include media-down($break-tablet) {
+      grid-template-columns: auto;
+      aspect-ratio: auto;
+    }
   }
 }
 </style>

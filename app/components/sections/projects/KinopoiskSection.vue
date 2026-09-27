@@ -15,6 +15,7 @@ const project: Project = {
   externalLink: {
     url: '/projects/kinopoisk/kinopoisk-redesign.pdf',
     title: 'Смотреть презентацию',
+    shortTitle: 'Презентация',
   },
 };
 </script>
@@ -40,6 +41,11 @@ const project: Project = {
       percentContentWidth(748)
       1fr;
     aspect-ratio: $content-width / 460;
+
+    @include media-down($break-tablet) {
+      grid-template-columns: auto;
+      aspect-ratio: auto;
+    }
   }
 }
 </style>

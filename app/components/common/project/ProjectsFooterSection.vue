@@ -14,17 +14,24 @@
   &__box {
     @include flex-center;
     flex-direction: column;
-    gap: 40px;
-    aspect-ratio: $content-width / 500;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--border-radius);
-    background-color: #111111;
     text-align: center;
+
+    @include media-up($break-tablet) {
+      gap: 40px;
+      aspect-ratio: $content-width / 500;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      background-color: #111111;
+    }
   }
 
   &__title {
     font-size: 20px;
     line-height: 28px;
+
+    @include media-down($break-tablet) {
+      display: none;
+    }
   }
 }
 </style>

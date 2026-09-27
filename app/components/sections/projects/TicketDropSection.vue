@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import type { Project } from '#shared/types/Project.ts';
+import type { UiImageProps } from '~/components/ui/UiImage.vue';
 
-const previews = [
-  '/projects/ticket-drop/preview-1.jpg',
-  '/projects/ticket-drop/preview-2.jpg',
-  '/projects/ticket-drop/preview-3.jpg',
-  '/projects/ticket-drop/preview-4.jpg',
+const previews: UiImageProps[] = [
+  { src: '/projects/ticket-drop/preview-1.jpg' },
+  {
+    src: '/projects/ticket-drop/preview-2.jpg',
+    border: true,
+    sources: {
+      tablet: '/projects/ticket-drop/preview-2-mobile.jpg',
+    },
+  },
+  { src: '/projects/ticket-drop/preview-3.jpg', border: true },
+  { src: '/projects/ticket-drop/preview-4.jpg' },
 ];
 
 const project: Project = {
@@ -16,6 +23,7 @@ const project: Project = {
   externalLink: {
     url: 'https://www.behance.net/gallery/213547005/Ticket-Drop-Mobile-app',
     title: 'Кейс на Behance',
+    shortTitle: 'Behance',
   },
 };
 </script>
@@ -23,11 +31,10 @@ const project: Project = {
 <template>
   <ProjectSectionBase :project="project" grid-class="ticket-drop-section__grid">
     <UiImage
-      v-for="(src, index) in previews"
+      v-for="(preview, index) in previews"
       :key="index"
       class="ticket-drop-section__item"
-      :src="src"
-      :border="index === 1 || index === 2"
+      v-bind="preview"
     />
   </ProjectSectionBase>
 </template>
@@ -42,6 +49,12 @@ const project: Project = {
       percentContentWidth(748);
     grid-template-rows: percentRatio(500, $grid-height) 1fr;
     aspect-ratio: $content-width / 1004;
+
+    @include media-down($break-tablet) {
+      grid-template-columns: auto;
+      grid-template-rows: auto;
+      aspect-ratio: auto;
+    }
   }
 
   &__item {
@@ -51,6 +64,10 @@ const project: Project = {
       @include media-down($break-laptop) {
         border-radius: 110px;
       }
+
+      @include media-down($break-tablet) {
+        border-radius: 120px;
+      }
     }
 
     &:nth-child(2) {
@@ -59,6 +76,12 @@ const project: Project = {
 
     &:nth-child(3) {
       grid-column: 1 / 3;
+    }
+
+    &:nth-child(n) {
+      @include media-down($break-tablet) {
+        grid-column: auto;
+      }
     }
   }
 }

@@ -48,6 +48,11 @@ const project: Project = {
       percentContentWidth(320)
       1fr;
     aspect-ratio: $content-width / 652;
+
+    @include media-down($break-tablet) {
+      grid-template-columns: 1fr 1fr;
+      aspect-ratio: auto;
+    }
   }
 
   &__item {
@@ -58,6 +63,14 @@ const project: Project = {
     &:nth-child(4) {
       grid-column-start: 3;
       grid-row: 1 / 3;
+    }
+
+    &:nth-child(1),
+    &:nth-child(4) {
+      @include media-down($break-tablet) {
+        grid-column: 1 / 3;
+        grid-row: auto;
+      }
     }
   }
 }

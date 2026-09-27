@@ -1,16 +1,22 @@
 <script setup lang="ts">
 interface Props {
   text: string;
+  shortText?: string;
   href?: string;
 }
 
-const { text, href } = defineProps<Props>();
+const { text, shortText, href } = defineProps<Props>();
 </script>
 
 <template>
-  <component :is="href ? 'a' : 'button'" :href="$public(href)" class="ui-button">
+  <component
+    :is="href ? 'a' : 'button'"
+    class="ui-button"
+    :href="$public(href)"
+    :data-short-text="shortText"
+  >
     <slot />
-    <span>{{ text }}</span>
+    <span class="ui-button__text">{{ text }}</span>
   </component>
 </template>
 
@@ -25,6 +31,18 @@ const { text, href } = defineProps<Props>();
 
   @include hover {
     text-decoration: none;
+  }
+
+  &[data-short-text] {
+    @include media-down($break-tablet) {
+      .ui-button__text {
+        display: none;
+      }
+
+      &::after {
+        content: attr(data-short-text);
+      }
+    }
   }
 }
 </style>

@@ -50,6 +50,11 @@ const project: Project = {
       1fr
       1fr;
     aspect-ratio: $content-width / 500;
+
+    @include media-down($break-tablet) {
+      grid-template-columns: auto;
+      aspect-ratio: auto;
+    }
   }
 }
 
@@ -62,6 +67,17 @@ const project: Project = {
       img {
         &:nth-child(3) {
           margin-top: -80px;
+        }
+      }
+
+      @include media-down($break-mobile) {
+        margin-top: 80px;
+        gap: 60px;
+
+        img {
+          &:nth-child(3) {
+            margin-top: -60px;
+          }
         }
       }
     }

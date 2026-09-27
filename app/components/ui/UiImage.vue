@@ -1,16 +1,34 @@
 <script setup lang="ts">
-interface Props {
+import breakpoints from '~/assets/styles/breakpoints.module.scss';
+
+export interface UiImageProps {
   src: string;
   border?: boolean;
+  sources?: Partial<Record<'mobile' | 'tablet' | 'laptop', string>>;
 }
 
-const { src, border } = defineProps<Props>();
+const { src, border, sources } = defineProps<UiImageProps>();
 </script>
 
 <template>
-  <div class="ui-image img-box" :class="{ 'ui-image--border': border }">
+  <picture class="ui-image img-box" :class="{ 'ui-image--border': border }">
+    <source
+      v-if="sources?.mobile"
+      :media="`(max-width: ${breakpoints.mobileDown})`"
+      :srcset="$public(sources.mobile)"
+    />
+    <source
+      v-if="sources?.tablet"
+      :media="`(max-width: ${breakpoints.tabletDown})`"
+      :srcset="$public(sources.tablet)"
+    />
+    <source
+      v-if="sources?.laptop"
+      :media="`(max-width: ${breakpoints.laptopDown})`"
+      :srcset="$public(sources.laptop)"
+    />
     <img :src="$public(src)" alt="Image" draggable="false" />
-  </div>
+  </picture>
 </template>
 
 <style lang="scss">
