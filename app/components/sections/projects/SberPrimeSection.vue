@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import type { Project } from '#shared/types/Project.ts';
 
-const previews = [
-  '/projects/sber-prime/preview-1.jpg',
-  '/projects/sber-prime/preview-2.jpg',
-  '/projects/sber-prime/preview-3.jpg',
-  '/projects/sber-prime/preview-4.jpg',
-];
-
 const project: Project = {
   name: 'СберПрайм',
   company: 'Сбер',
@@ -31,12 +24,15 @@ const project: Project = {
 
 <template>
   <ProjectSectionBase :project="project" grid-class="sber-prime-section__grid">
-    <UiImage
-      v-for="(src, index) in previews"
-      :key="index"
+    <UiImage class="sber-prime-section__item" src="/projects/sber-prime/preview-1.jpg" />
+    <UiVideo
       class="sber-prime-section__item"
-      :src="src"
+      src="/projects/sber-prime/preview-2.mp4"
+      poster="/projects/sber-prime/preview-2.jpg"
+      alt="Хомяк со стаканчиком кофе на фоне зелёного луга"
     />
+    <UiImage class="sber-prime-section__item" src="/projects/sber-prime/preview-3.jpg" />
+    <UiImage class="sber-prime-section__item" src="/projects/sber-prime/preview-4.jpg" />
   </ProjectSectionBase>
 </template>
 
@@ -58,6 +54,12 @@ const project: Project = {
   &__item {
     &:nth-child(1) {
       grid-row: 1 / 3;
+    }
+
+    &:nth-child(2) {
+      @include media-down($break-tablet) {
+        aspect-ratio: 165 / 162;
+      }
     }
 
     &:nth-child(4) {
