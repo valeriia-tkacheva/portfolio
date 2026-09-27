@@ -31,7 +31,7 @@ const project: Project = {
       poster="/projects/sber-prime/preview-2.jpg"
       alt="Хомяк со стаканчиком кофе на фоне зелёного луга"
     />
-    <UiImage class="sber-prime-section__item" src="/projects/sber-prime/preview-3.jpg" />
+    <SberPrimePartners class="sber-prime-section__item" />
     <UiImage class="sber-prime-section__item" src="/projects/sber-prime/preview-4.jpg" />
   </ProjectSectionBase>
 </template>
