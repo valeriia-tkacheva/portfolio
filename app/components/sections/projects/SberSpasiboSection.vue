@@ -55,5 +55,13 @@ const project: Project = {
       aspect-ratio: auto;
     }
   }
+
+  &__item {
+    &:nth-child(3) {
+      @include media-down($break-tablet) {
+        display: none;
+      }
+    }
+  }
 }
 </style>
