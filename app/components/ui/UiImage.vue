@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import breakpoints from '~/assets/styles/breakpoints.module.scss';
 
-export interface UiImageProps {
+interface Props {
   src: string;
   border?: boolean;
   sources?: Partial<Record<'mobile' | 'tablet' | 'laptop', string>>;
 }
 
-const { src, border, sources } = defineProps<UiImageProps>();
+const { src, border, sources } = defineProps<Props>();
 </script>
 
 <template>

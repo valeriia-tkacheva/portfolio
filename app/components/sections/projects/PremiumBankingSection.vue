@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import type { Project } from '#shared/types/Project.ts';
 
-const previews = [
-  '/projects/premium-banking/preview-1.jpg',
-  '/projects/premium-banking/preview-2.jpg',
-];
-
 const project: Project = {
   name: 'Премиальный банкинг',
   company: 'Сбер',
@@ -31,11 +26,11 @@ const project: Project = {
 
 <template>
   <ProjectSectionBase :project="project" grid-class="premium-banking-section__grid">
-    <UiImage
-      v-for="(src, index) in previews"
-      :key="index"
+    <UiImage class="premium-banking-section__item" src="/projects/premium-banking/preview-1.jpg" />
+    <UiVideo
       class="premium-banking-section__item"
-      :src="src"
+      src="/projects/premium-banking/preview-2.mp4"
+      poster="/projects/premium-banking/preview-2.jpg"
     />
   </ProjectSectionBase>
 </template>
@@ -51,6 +46,12 @@ const project: Project = {
     @include media-down($break-tablet) {
       grid-template-columns: auto;
       aspect-ratio: auto;
+    }
+  }
+
+  &__item {
+    @include media-down($break-tablet) {
+      aspect-ratio: 748 / 500;
     }
   }
 }

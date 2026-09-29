@@ -1,19 +1,5 @@
 <script setup lang="ts">
 import type { Project } from '#shared/types/Project.ts';
-import type { UiImageProps } from '~/components/ui/UiImage.vue';
-
-const previews: UiImageProps[] = [
-  { src: '/projects/ticket-drop/preview-1.jpg' },
-  {
-    src: '/projects/ticket-drop/preview-2.jpg',
-    border: true,
-    sources: {
-      tablet: '/projects/ticket-drop/preview-2-mobile.jpg',
-    },
-  },
-  { src: '/projects/ticket-drop/preview-3.jpg', border: true },
-  { src: '/projects/ticket-drop/preview-4.jpg' },
-];
 
 const project: Project = {
   name: 'Ticket Drop Service',
@@ -30,12 +16,22 @@ const project: Project = {
 
 <template>
   <ProjectSectionBase :project="project" grid-class="ticket-drop-section__grid">
-    <UiImage
-      v-for="(preview, index) in previews"
-      :key="index"
+    <UiVideo
       class="ticket-drop-section__item"
-      v-bind="preview"
+      src="/projects/ticket-drop/preview-1.mp4"
+      poster="/projects/ticket-drop/preview-1.jpg"
+      alt="Крыло самолёта над облаками"
     />
+    <UiImage
+      class="ticket-drop-section__item"
+      src="/projects/ticket-drop/preview-2.jpg"
+      :sources="{
+        tablet: '/projects/ticket-drop/preview-2-mobile.jpg',
+      }"
+      border
+    />
+    <UiImage class="ticket-drop-section__item" src="/projects/ticket-drop/preview-3.jpg" border />
+    <UiImage class="ticket-drop-section__item" src="/projects/ticket-drop/preview-4.jpg" />
   </ProjectSectionBase>
 </template>
 
@@ -66,6 +62,7 @@ const project: Project = {
       }
 
       @include media-down($break-tablet) {
+        aspect-ratio: 410 / 500;
         border-radius: 120px;
       }
     }
